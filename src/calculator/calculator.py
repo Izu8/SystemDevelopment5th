@@ -26,6 +26,8 @@ class Calculator:
         Raises:
             InvalidInputException: If any input is outside valid range
         """
+        # Validate inputs
+        self._validate_input(a, b)
         return a + b
 
     def subtract(self, a, b):
@@ -41,6 +43,9 @@ class Calculator:
         Raises:
             InvalidInputException: If any input is outside valid range
         """
+        # Validate inputs
+        self._validate_input(a, b)
+        
         return a - b
 
     def multiply(self, a, b):
@@ -56,6 +61,8 @@ class Calculator:
         Raises:
             InvalidInputException: If any input is outside valid range
         """
+        # Validate inputs
+        self._validate_input(a, b)
         return a * b
 
     def divide(self, a, b):
@@ -74,7 +81,22 @@ class Calculator:
         """
         if b == 0:
             raise ValueError("Cannot divide by zero")
+        # Validate inputs
+        self._validate_input(a, b)
         return a / b
+    
+    def _validate_input(self, *value):
+        """Validate that the input value is within the acceptable range.
+
+        Args:
+            value: The input value to validate 
+        Raises:
+            InvalidInputException: If value is outside the range -1,000,000 to 1,000,000
+        """
+        for v in value:
+            if v < -1000000 or v > 1000000:
+                raise InvalidInputException(f"Input value {v} is outside the valid range (-1,000,000 to 1,000,000)")    
+            
 
 
 
